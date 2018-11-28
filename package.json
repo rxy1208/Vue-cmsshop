@@ -1,0 +1,40 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "file-loader": "^2.0.0",
+    "jquery": "^3.3.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.26.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^1.0.1",
+    "mint-ui": "^2.2.13",
+    "moment": "^2.22.2",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "vant": "^1.4.5",
+    "vue": "^2.5.17",
+    "vue-loader": "^15.4.2",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --open --contentBase src --hot --port 5325"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
