@@ -23,7 +23,7 @@
                         <span>购买数量: </span>
                         <div class="mui-numbox" data-numbox-min='1' data-numbox-max='200'>
                             <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-                            <input id="test" class="mui-input-numbox" type="number" value="5" />
+                            <input id="test" class="mui-input-numbox" type="number" value="1" ref="number" />
                             <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="mui-card-footer buybutton">
                 <mt-button type="primary">立即购买</mt-button>
-                <mt-button type="danger">加入购物车</mt-button>
+                <mt-button type="danger" @click="addGoodsToCart">加入购物车</mt-button>
             </div>
         </div>
         
@@ -41,12 +41,12 @@
                 <div class="mui-card-content-inner">
                     <p>商品货号: {{goodsinfo.goods_no}}</p>
                     <p>库存情况: {{goodsinfo.stock_quantity}}</p>
-                    <p>上架时间: {{goodsinfo.add_time}}</p>
+                    <p>上架时间: {{goodsinfo.add_time | dateToTime()}}</p>
                 </div>
             </div>
-            <div class="mui-card-footer">
-                <a class="mui-card-link">Like</a>
-                <a class="mui-card-link">Read more</a>
+            <div class="mui-card-footer largebutton">
+                <mt-button type="primary" size="large" plain @click="intro">图文介绍</mt-button>
+                <mt-button class="comment" type="danger" size="large" plain @click="comment">商品评论</mt-button>
             </div>
         </div>
     </div>
@@ -71,10 +71,14 @@
             this.getgoodsimg();
             this.getgoodsinfo();
         },
+        mounted(){
+            mui('.mui-numbox').numbox();
+        },
         components:{
             lunbo,
         },
         methods:{
+            //获取商品轮播图数据
             getgoodsimg(){
                 this.$http.get('api/getthumbimages/'+this.id).then(function(res){
                     if(res.body.message.length==0){
@@ -92,12 +96,33 @@
                     this.lunbo = res.body.message;
                 });
             },
+            //获取商品详情
             getgoodsinfo(){
                 this.$http.get('api/getgoodsinfo/'+this.id).then(function(res){
                     if(res.body.status==0){
                         this.goodsinfo = res.body.message[0];
                     }
                 });
+            },
+            //获取图文介绍
+            intro(){
+                this.$router.push('/home/goodsdesc/'+this.id);
+            },
+            //获取商品评论
+            comment(){
+                this.$router.push('/home/goodscomment/'+this.id);
+            },
+            //把商品添加到购物车
+            addGoodsToCart(){
+                //构建购物车商品数据的对象
+                var data = {
+                    id:this.id,
+                    number:this.$refs.number.value,
+                    price:this.goodsinfo.sell_price,
+                    selected:true
+                };
+                //把数据提交到vuex共享中
+                this.$store.commit('add',data);
             }
         },
     }
@@ -117,6 +142,13 @@
     .sell{
         color:red;
         font-weight:bold;
-        margin-left:10px
+        margin-left:10px;
+    }
+    .largebutton{
+        display:flex;
+        flex-direction:column;
+        .comment{
+            margin-top:5px;
+        }
     }
 </style>

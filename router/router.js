@@ -15,6 +15,8 @@ import photolist from '../src/components/photoshare/photolist.vue';
 import photodetail from '../src/components/photoshare/photodetail.vue';
 import goodslist from '../src/components/goods/goodslist.vue';
 import goodsdetail from '../src/components/goods/goodsdetail.vue';
+import goodsdesc from '../src/components/goods/goodsdesc.vue';
+import goodscomment from '../src/components/goods/goodscomment.vue';
 
 //把路由安装到vue
 Vue.use(VueRouter);
@@ -32,6 +34,8 @@ var router = new VueRouter({
                 {path:'/home/photodetail/:imgid',component:photodetail},
                 {path:'/home/goodslist/',component:goodslist},
                 {path:'/home/goodsdetail/:id',component:goodsdetail},
+                {path:'/home/goodsdesc/:id',component:goodsdesc},
+                {path:'/home/goodscomment/:id',component:goodscomment},
             ],
         //修改路由默认类
         'linkActiveClass' :  'mui-active'

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="photodetail">
         <h3>{{imgdetail.title}}</h3>
         <p class="time">
             <span class="addtime">发布时间: {{imgdetail.add_time | dateToTime()}}</span>
@@ -53,23 +53,25 @@
 </script>
 
 <style lang="sass">
-    h3{
-        color:blue;
-        text-align:center;
-    }
-    .time{
-        display:flex;
-        justify-content:space-between;
-        color:#ccc;
-    }
-    .img{
-        padding: 10px 4px;
-        img{
-            width:100%;
+    .photodetail{
+        h3{
+            color:blue;
+            text-align:center;
         }
-    }
-    .content{
-        line-height:30px;
-        margin:0 4px;
+        .time{
+            display:flex;
+            justify-content:space-between;
+            color:#ccc;
+        }
+        .img{
+            padding: 10px 4px;
+            img{
+                width:100%;
+            }
+        }
+        .content{
+            line-height:30px;
+            margin:0 4px;
+        }
     }
 </style>

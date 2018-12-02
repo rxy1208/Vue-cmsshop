@@ -44,7 +44,6 @@
         methods:{
             getlunbo(){
                 this.$http.get('api/getlunbo').then(function(res){
-                    console.log(res);
                     if(res.body.status == 0){
                         this.lunbo = res.body.message;
                     }
